@@ -1,8 +1,8 @@
-import 'package:beside04_test/social_login.dart';
+import 'package:beside04_test/domain/repository/social_login_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
-class KakaoLogin implements SocialLogin {
+class KakaoLoginImpl implements SocialLoginRepository {
   @override
   Future<bool> login() async {
     if (await isKakaoTalkInstalled()) {

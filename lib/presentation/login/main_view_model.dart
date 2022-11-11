@@ -1,8 +1,8 @@
-import 'package:beside04_test/social_login.dart';
+import 'package:beside04_test/domain/repository/social_login_repository.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 class MainViewModel {
-  final SocialLogin _socialLogin;
+  final SocialLoginRepository _socialLogin;
   bool isLogin = false;
   User? user;
 

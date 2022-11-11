@@ -1,4 +1,4 @@
-abstract class SocialLogin {
+abstract class SocialLoginRepository {
   Future<bool> login();
 
   Future<bool> logout();
