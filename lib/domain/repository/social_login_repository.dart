@@ -1,5 +1,7 @@
-abstract class SocialLoginRepository {
-  Future<bool> login();
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
-  Future<bool> logout();
+abstract class SocialLoginRepository {
+  Future<OAuthToken?> login();
+
+  Future<UserIdResponse?> logout();
 }
