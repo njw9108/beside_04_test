@@ -1,3 +1,4 @@
+import 'package:beside04_test/domain/model/note.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,6 +11,7 @@ class HomeState with _$HomeState {
   factory HomeState({
     @Default('') String accessToken,
     @Default('') String refreshToken,
+    @Default([]) List<Note> notes,
   }) = _HomeState;
 
   factory HomeState.fromJson(Map<String, dynamic> json) =>

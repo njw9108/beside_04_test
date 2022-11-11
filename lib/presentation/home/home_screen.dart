@@ -1,3 +1,4 @@
+import 'package:beside04_test/presentation/home/conponents/note_widget.dart';
 import 'package:beside04_test/presentation/home/home_view_model.dart';
 import 'package:beside04_test/presentation/login/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,18 +26,62 @@ class HomeScreen extends GetView<HomeViewModel> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurpleAccent,
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Access Token'),
-            Text(state.value.accessToken),
+            Obx(
+              () => Text(state.value.accessToken),
+            ),
             const SizedBox(
               height: 20,
             ),
             const Text('Refresh Token'),
-            Text(state.value.refreshToken),
+            Obx(
+              () => Text(state.value.refreshToken),
+            ),
+            const Divider(
+              color: Colors.black54,
+            ),
+            const Text(
+              '글 목록',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: Obx(
+                () => GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: state.value.notes.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
+                    childAspectRatio: 1, //가로 세로 비율
+                    mainAxisSpacing: 10, //수평 Padding
+                    crossAxisSpacing: 10, //수직 Padding
+                  ),
+                  itemBuilder: (context, index) {
+                    return Obx(
+                      () => NoteWidget(
+                        note: state.value.notes[index],
+                        noteDelete: controller.deleteNotes,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
