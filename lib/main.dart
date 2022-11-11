@@ -1,4 +1,6 @@
 import 'package:beside04_test/data/repository/kakao_login_impl.dart';
+import 'package:beside04_test/di/getx_binding_builder_call_back.dart';
+import 'package:beside04_test/domain/use_case/kakao_login_use_case.dart';
 import 'package:beside04_test/presentation/login/login_screen.dart';
 import 'package:beside04_test/presentation/login/login_view_model.dart';
 import 'package:beside04_test/res/constant/key.dart';
@@ -16,16 +18,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final KakaoLoginImpl kakaoLoginImpl = KakaoLoginImpl();
-
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialBinding: BindingsBuilder(() {
-        Get.put(LoginViewModel(kakaoLoginImpl));
-      }),
+      initialBinding: BindingsBuilder(getBinding),
       home: const LoginScreen(),
     );
   }
