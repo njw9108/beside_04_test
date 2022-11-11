@@ -1,3 +1,5 @@
+import 'package:beside04_test/di/getx_binding_builder_call_back.dart';
+import 'package:beside04_test/presentation/home/home_screen.dart';
 import 'package:beside04_test/presentation/login/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,10 +18,15 @@ class LoginScreen extends GetView<LoginViewModel> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Obx(() => Text('${state.value.isLogin}')),
             InkWell(
               onTap: () async {
                 await controller.login();
+                if (state.value.isLogin) {
+                  Get.offAll(
+                    const HomeScreen(),
+                    binding: BindingsBuilder(getHomeBinding),
+                  );
+                }
               },
               child: SizedBox(
                 width: 200,

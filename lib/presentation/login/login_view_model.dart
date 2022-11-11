@@ -4,16 +4,16 @@ import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 class LoginViewModel extends GetxController {
-  final KakaoLoginUseCase kakaoLogin;
+  final KakaoLoginUseCase kakaoLoginUseCase;
 
-  LoginViewModel(this.kakaoLogin);
+  LoginViewModel(this.kakaoLoginUseCase);
 
   final Rx<LoginState> _state = LoginState().obs;
 
   Rx<LoginState> get state => _state;
 
   Future<void> login() async {
-    final OAuthToken? token = await kakaoLogin.login();
+    final OAuthToken? token = await kakaoLoginUseCase.login();
     User? user;
     if (token != null) {
       user = await UserApi.instance.me();
@@ -21,14 +21,6 @@ class LoginViewModel extends GetxController {
     _state.value = state.value.copyWith(
       isLogin: token != null,
       user: user,
-    );
-  }
-
-  Future<void> logout() async {
-    final UserIdResponse? response = await kakaoLogin.logout();
-    _state.value = state.value.copyWith(
-      isLogin: false,
-      user: null,
     );
   }
 }

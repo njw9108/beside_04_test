@@ -14,6 +14,8 @@ class KakaoLoginUseCase {
   Future<OAuthToken?> login() async {
     final OAuthToken? result = await repository.login();
     if (result != null) {
+      print('check access token : ${result.accessToken}');
+      print('check refresh token : ${result.refreshToken}');
       await tokenRepository.saveData('accessToken', result.accessToken);
       await tokenRepository.saveData('refreshToken', result.refreshToken);
     }
