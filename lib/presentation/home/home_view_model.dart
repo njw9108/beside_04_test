@@ -37,8 +37,6 @@ class HomeViewModel extends GetxController {
     getNotes();
   }
 
-  Future<void> writeNotes() async {}
-
   Future<void> getTokenData() async {
     final accessToken = await getTokenUseCase.getAccessToken();
     final refreshToken = await getTokenUseCase.getRefreshToken();

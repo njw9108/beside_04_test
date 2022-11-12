@@ -8,7 +8,7 @@ class NoteUseCase {
     required this.noteRepository,
   });
 
-  Future<void> writeNote(Note note) async {
+  Future<void> saveNote(Note note) async {
     await noteRepository.writeNote(note);
   }
 

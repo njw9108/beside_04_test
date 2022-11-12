@@ -1,6 +1,9 @@
+import 'package:beside04_test/di/getx_binding_builder_call_back.dart';
+import 'package:beside04_test/domain/model/note.dart';
 import 'package:beside04_test/presentation/home/conponents/note_widget.dart';
 import 'package:beside04_test/presentation/home/home_view_model.dart';
 import 'package:beside04_test/presentation/login/login_screen.dart';
+import 'package:beside04_test/presentation/note_edit/note_edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +31,15 @@ class HomeScreen extends GetView<HomeViewModel> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurpleAccent,
-        onPressed: () {},
+        onPressed: () async {
+          final res = await Get.to(
+            const NoteEditScreen(),
+            binding: BindingsBuilder(getNoteEditBinding),
+          );
+          if (res != null && res == true) {
+            controller.getNotes();
+          }
+        },
         child: const Icon(Icons.add),
       ),
       body: Padding(
@@ -76,6 +87,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                       () => NoteWidget(
                         note: state.value.notes[index],
                         noteDelete: controller.deleteNotes,
+                        noteTap: _noteTap,
                       ),
                     );
                   },
@@ -86,5 +98,17 @@ class HomeScreen extends GetView<HomeViewModel> {
         ),
       ),
     );
+  }
+
+  Future<void> _noteTap(Note note) async {
+    final res = await Get.to(
+      NoteEditScreen(
+        note: note,
+      ),
+      binding: BindingsBuilder(getNoteEditBinding),
+    );
+    if (res != null && res == true) {
+      controller.getNotes();
+    }
   }
 }

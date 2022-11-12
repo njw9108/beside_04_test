@@ -7,6 +7,7 @@ import 'package:beside04_test/domain/use_case/kakao_login_use_case.dart';
 import 'package:beside04_test/domain/use_case/note_use_case.dart';
 import 'package:beside04_test/presentation/home/home_view_model.dart';
 import 'package:beside04_test/presentation/login/login_view_model.dart';
+import 'package:beside04_test/presentation/note_edit/note_edit_view_model.dart';
 import 'package:get/get.dart';
 
 final KakaoLoginImpl kakaoLoginImpl = KakaoLoginImpl();
@@ -33,6 +34,12 @@ void getHomeBinding() {
   Get.put(HomeViewModel(
     getTokenUseCase: getTokenUseCase,
     kakaoLoginUseCase: kakaoLoginUseCase,
+    noteUseCase: noteUseCase,
+  ));
+}
+
+void getNoteEditBinding() {
+  Get.put(NoteEditViewModel(
     noteUseCase: noteUseCase,
   ));
 }
