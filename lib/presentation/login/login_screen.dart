@@ -18,15 +18,16 @@ class LoginScreen extends GetView<LoginViewModel> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text('로그인 테스트'),
             InkWell(
               onTap: () async {
                 await controller.login();
-                if (state.value.isLogin) {
-                  Get.offAll(
-                    const HomeScreen(),
-                    binding: BindingsBuilder(getHomeBinding),
-                  );
-                }
+                //if (state.value.isLogin) {
+                Get.offAll(
+                  const HomeScreen(),
+                  binding: BindingsBuilder(getHomeBinding),
+                );
+                //}
               },
               child: SizedBox(
                 width: 200,
