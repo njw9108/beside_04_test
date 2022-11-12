@@ -28,18 +28,27 @@ class NoteWidget extends StatelessWidget {
           color: Colors.amberAccent,
         ),
         padding: const EdgeInsets.symmetric(
-          vertical: 20,
+          vertical: 10,
           horizontal: 10,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              note.title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                Image.asset(
+                  note.emoticonUrl,
+                  width: 30,
+                  height: 30,
+                ),
+                Text(
+                  note.title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
             Text(
               format.format(date),
@@ -59,11 +68,48 @@ class NoteWidget extends StatelessWidget {
             const Spacer(),
             Align(
               alignment: Alignment.bottomRight,
-              child: IconButton(
-                onPressed: () {
-                  noteDelete(note);
-                },
-                icon: const Icon(Icons.delete_forever_rounded),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Container(
+                      color: Colors.grey,
+                      height: 50,
+                      padding: EdgeInsets.all(8),
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, //1 개의 행에 보여줄 item 개수
+                          childAspectRatio: 2.5 / 1, //가로 세로 비율
+                          mainAxisSpacing: 5, //수평 Padding
+                          crossAxisSpacing: 5, //수직 Padding
+                        ),
+                        itemCount: note.emotion.length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            color: Colors.deepPurple,
+                            alignment: Alignment.center,
+                            child: Text(
+                              note.emotion[index],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      onPressed: () {
+                        noteDelete(note);
+                      },
+                      icon: const Icon(Icons.delete_forever_rounded),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
