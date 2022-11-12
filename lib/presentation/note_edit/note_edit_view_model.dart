@@ -19,18 +19,16 @@ class NoteEditViewModel extends GetxController {
     super.dispose();
   }
 
-  Future<bool> saveNote(int? id, String title, String content) async {
+  Future<bool> saveNote(Note note, String title, String content) async {
     if (title.isEmpty || content.isEmpty) {
       return false;
     }
-    await noteUseCase.saveNote(
-      Note(
-        id: id,
-        title: title,
-        content: content,
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-      ),
+    final newNote = note.copyWith(
+      title: title,
+      content: content,
+      timestamp: DateTime.now().millisecondsSinceEpoch,
     );
+    await noteUseCase.saveNote(newNote);
     return true;
   }
 }

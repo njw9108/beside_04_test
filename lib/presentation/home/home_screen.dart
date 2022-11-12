@@ -1,5 +1,6 @@
 import 'package:beside04_test/di/getx_binding_builder_call_back.dart';
 import 'package:beside04_test/domain/model/note.dart';
+import 'package:beside04_test/presentation/emotion/emotion_screen.dart';
 import 'package:beside04_test/presentation/home/conponents/note_widget.dart';
 import 'package:beside04_test/presentation/home/home_view_model.dart';
 import 'package:beside04_test/presentation/login/login_screen.dart';
@@ -32,13 +33,10 @@ class HomeScreen extends GetView<HomeViewModel> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurpleAccent,
         onPressed: () async {
-          final res = await Get.to(
-            const NoteEditScreen(),
-            binding: BindingsBuilder(getNoteEditBinding),
+          await Get.to(
+            const EmotionScreen(),
+            binding: BindingsBuilder(getEmotionBinding),
           );
-          if (res != null && res == true) {
-            controller.getNotes();
-          }
         },
         child: const Icon(Icons.add),
       ),
@@ -101,14 +99,11 @@ class HomeScreen extends GetView<HomeViewModel> {
   }
 
   Future<void> _noteTap(Note note) async {
-    final res = await Get.to(
+    await Get.to(
       NoteEditScreen(
         note: note,
       ),
       binding: BindingsBuilder(getNoteEditBinding),
     );
-    if (res != null && res == true) {
-      controller.getNotes();
-    }
   }
 }

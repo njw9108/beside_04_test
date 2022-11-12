@@ -42,17 +42,29 @@ final notes = [
     content:
         '안녕하세요.\nnote 1 입니다. 문장이 길어지면 어떻게 될까? 테스트해보자.문장이 길어지면 어떻게 될까? 테스트해보자.문장이 길어지면 어떻게 될까? 테스트해보자.문장이 길어지면 어떻게 될까? 테스트해보자.문장이 길어지면 어떻게 될까? 테스트해보자.',
     timestamp: DateTime.now().millisecondsSinceEpoch,
+    emoticonUrl: 'lib/res/img/star.png',
+    emotion: [
+      '즐거움',
+    ],
   ),
   Note(
     id: 2,
     title: 'note2',
     content: '안녕하세요.\nnote 2 입니다.',
     timestamp: DateTime.now().millisecondsSinceEpoch,
+    emoticonUrl: 'lib/res/img/thinking.png',
+    emotion: [
+      '슬픔',
+    ],
   ),
   Note(
     id: 3,
     title: 'note3',
     content: '안녕하세요.\nnote 3 입니다.',
     timestamp: DateTime.now().millisecondsSinceEpoch,
+    emoticonUrl: 'lib/res/img/squinting.png',
+    emotion: [
+      '우울함',
+    ],
   ),
 ];

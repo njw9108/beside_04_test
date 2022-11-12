@@ -5,6 +5,7 @@ import 'package:beside04_test/domain/repository/note_repository.dart';
 import 'package:beside04_test/domain/use_case/get_token_use_case.dart';
 import 'package:beside04_test/domain/use_case/kakao_login_use_case.dart';
 import 'package:beside04_test/domain/use_case/note_use_case.dart';
+import 'package:beside04_test/presentation/emotion/emotion_view_model.dart';
 import 'package:beside04_test/presentation/home/home_view_model.dart';
 import 'package:beside04_test/presentation/login/login_view_model.dart';
 import 'package:beside04_test/presentation/note_edit/note_edit_view_model.dart';
@@ -42,4 +43,8 @@ void getNoteEditBinding() {
   Get.put(NoteEditViewModel(
     noteUseCase: noteUseCase,
   ));
+}
+
+void getEmotionBinding() {
+  Get.put(EmotionViewModel());
 }

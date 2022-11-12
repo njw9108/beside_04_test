@@ -12,6 +12,8 @@ class Note with _$Note {
     required String title,
     required String content,
     required int timestamp,
+    required List<String> emotion,
+    required String emoticonUrl,
   }) = _Note;
 
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
