@@ -106,6 +106,13 @@ class NoteEditScreen extends GetView<NoteEditViewModel> {
                   hintText: 'Enter some content',
                   hintStyle: TextStyle(color: Colors.black54),
                 ),
+                onChanged: (text) {
+                  if (text.length >= 20 && controller.isDone.isFalse) {
+                    Get.snackbar('힘내세요', '인내는 쓰고 그 열매는 달다.',
+                        snackPosition: SnackPosition.BOTTOM);
+                    controller.changeDone();
+                  }
+                },
               ),
             ],
           ),

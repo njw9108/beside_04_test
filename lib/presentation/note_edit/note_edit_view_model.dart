@@ -7,6 +7,7 @@ class NoteEditViewModel extends GetxController {
   final NoteUseCase noteUseCase;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+  final Rx<bool> isDone = false.obs;
 
   NoteEditViewModel({
     required this.noteUseCase,
@@ -21,6 +22,8 @@ class NoteEditViewModel extends GetxController {
 
   Future<bool> saveNote(Note note, String title, String content) async {
     if (title.isEmpty || content.isEmpty) {
+      Get.snackbar('알림', '제목과 내용을 입력해주세요.',
+          snackPosition: SnackPosition.BOTTOM);
       return false;
     }
     final newNote = note.copyWith(
@@ -30,5 +33,9 @@ class NoteEditViewModel extends GetxController {
     );
     await noteUseCase.saveNote(newNote);
     return true;
+  }
+
+  void changeDone() {
+    isDone(true);
   }
 }
