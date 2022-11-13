@@ -9,8 +9,7 @@ class LoginScreen extends GetView<LoginViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    final state = controller.state;
-    return Scaffold(
+        return Scaffold(
       appBar: AppBar(
         title: const Text('로그인 화면'),
       ),

@@ -1,5 +1,6 @@
 import 'package:beside04_test/domain/model/note.dart';
 import 'package:beside04_test/domain/use_case/get_token_use_case.dart';
+import 'package:beside04_test/domain/use_case/get_user_info_use_case.dart';
 import 'package:beside04_test/domain/use_case/kakao_login_use_case.dart';
 import 'package:beside04_test/domain/use_case/note_use_case.dart';
 import 'package:beside04_test/presentation/home/home_state.dart';
@@ -8,16 +9,19 @@ import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 class HomeViewModel extends GetxController {
   final GetTokenUseCase getTokenUseCase;
+  final GetUserInfoUseCase getUserInfoUseCase;
   final KakaoLoginUseCase kakaoLoginUseCase;
   final NoteUseCase noteUseCase;
 
   HomeViewModel({
     required this.getTokenUseCase,
+    required this.getUserInfoUseCase,
     required this.kakaoLoginUseCase,
     required this.noteUseCase,
   }) {
     getTokenData();
     getNotes();
+    getUserId();
   }
 
   final Rx<HomeState> _state = HomeState().obs;
@@ -51,5 +55,13 @@ class HomeViewModel extends GetxController {
     final UserIdResponse? response = await kakaoLoginUseCase.logout();
 
     return response != null;
+  }
+
+  Future<void> getUserId() async {
+    final userId = await getUserInfoUseCase();
+
+    _state.value = state.value.copyWith(
+      userId: userId,
+    );
   }
 }

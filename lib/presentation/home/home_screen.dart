@@ -56,6 +56,10 @@ class HomeScreen extends GetView<HomeViewModel> {
             Obx(
               () => Text(state.value.refreshToken),
             ),
+            const Text('User Id'),
+            Obx(
+              () => Text(state.value.userId),
+            ),
             const Divider(
               color: Colors.black54,
             ),

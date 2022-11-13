@@ -11,6 +11,7 @@ class HomeState with _$HomeState {
   factory HomeState({
     @Default('') String accessToken,
     @Default('') String refreshToken,
+    @Default('') String userId,
     @Default([]) List<Note> notes,
   }) = _HomeState;
 
